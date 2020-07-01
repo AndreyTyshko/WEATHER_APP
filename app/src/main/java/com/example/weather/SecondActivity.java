@@ -47,7 +47,6 @@ public class SecondActivity extends AppCompatActivity {
         TextView textViewCapital = findViewById(R.id.capital);
 
         Date currentDate = new Date();
-        // Форматирование времени как "день.месяц.год"
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         String dateText = dateFormat.format(currentDate);
         textViewDate.setText(dateText);
