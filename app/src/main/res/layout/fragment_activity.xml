@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <fragment
+            android:id="@+id/fragment_f"
+            class="com.example.weather.fragments.FlagFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="354dp"
+            android:layout_gravity="center"
+            tools:layout="@layout/fragment_flag" />
+        <fragment
+            android:id="@+id/fragment__c"
+            class="com.example.weather.fragments.Fragment_Country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:layout="@layout/fragment__country" />
+
+
+    </LinearLayout>
+
+
+</FrameLayout>
