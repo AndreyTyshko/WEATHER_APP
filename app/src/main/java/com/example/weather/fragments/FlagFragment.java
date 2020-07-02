@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.weather.R;
 
@@ -60,6 +61,8 @@ public class FlagFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
         }
 
 
@@ -75,6 +78,10 @@ public class FlagFragment extends Fragment {
             Log.e(TAG, "onCreateView", e);
             throw e;
         }
+
+        public void setText(String item) {
+            TextView view = (TextView) getView().findViewById(R.id.detailsText);
+            view.setText(item);
 
     }
 

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +18,10 @@ import static com.example.weather.MainActivity.EXTRA_STATE;
 
 
 public class Fragment_Activity extends FragmentActivity {
+    Fragment mFragment1 = new FlagFragment();
+    Fragment mFragment2 = new Fragment_Country();
+
+    FragmentTransaction mFragmentTransaction;
 
 
     @Override
@@ -26,7 +29,7 @@ public class Fragment_Activity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         try {
             setContentView(R.layout.fragment_activity);
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d(TAG, "onCreate", e);
                     throw e;
         }
@@ -43,23 +46,26 @@ public class Fragment_Activity extends FragmentActivity {
         }
 
         //imageView.setImageResource(state.getFlagResource());
-        textViewState.setText(state.getName());
+        //textViewState.setText(state.getName());
         //textViewCapital.setText(state.getCapital());
 
 
 
-        Fragment  frag1 = new Fragment();
+        /*Fragment  frag1 = new Fragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragment_f, frag1);
         
 
-        frag1 = getSupportFragmentManager().findFragmentById(R.id.fragment_f);
-
-       ((ImageView) frag1.getView().findViewById(R.id.flag)).setImageResource(state.getFlagResource());
+        frag1 = getSupportFragmentManager().findFragmentById(R.id.fragment_f);*/
 
 
 
+       mFragmentTransaction = getSupportFragmentManager().beginTransaction();
 
+       mFragmentTransaction.add(R.id.fragment_f, mFragment1);
+//        ((ImageView) mFragment1.getView().findViewById(R.id.flag)).setImageResource(state.getFlagResource());
+
+       mFragmentTransaction.add(R.id.fragment_c, mFragment2);
 
 
 

@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.app.FragmentActivity;
+
 import com.example.weather.R;
 
 import static android.content.ContentValues.TAG;
@@ -55,7 +55,11 @@ public class Fragment_Country extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
         }
+
+
     }
 
     @Override
@@ -63,7 +67,7 @@ public class Fragment_Country extends Fragment {
         // Inflate the layout for this fragment
 
        try {
-           return inflater.inflate(R.layout.fragment__country, container, false);
+           return inflater.inflate(R.layout.fragment_country, container, false);
         } catch (Exception e) {
            Log.e(TAG, "onCreateView", e);
            throw e;
