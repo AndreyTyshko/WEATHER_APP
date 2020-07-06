@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.weather.R;
@@ -23,7 +23,7 @@ public class Fragment_Activity extends FragmentActivity {
     Fragment mFragment2 = new Fragment_Country();
 
     FragmentTransaction mFragmentTransaction;
-
+Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,16 +65,29 @@ public class Fragment_Activity extends FragmentActivity {
 
       // mFragmentTransaction.add(R.id.fragment_c, mFragment2);
 
+ mButton.findViewById(R.id.button3);
+ mButton.setOnClickListener(new View.OnClickListener() {
+     @Override
+     public void onClick(View v) {
+         CreateFragment();
+     }
+ });
+
+
+
+
+    }
+
+
+    public void CreateFragment(){
 
         FragmentManager fm  = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_f);
         if (fragment == null)
             fragment  = new FlagFragment();
         fm.beginTransaction()
-        .add(R.id.fragment_f, fragment)
-        .commit();
-
-
-
+                .add(R.id.fragment_f, fragment)
+                .commit();
     }
+
 }
