@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,22 +19,34 @@ import static android.content.ContentValues.TAG;
 import static com.example.weather.MainActivity.EXTRA_STATE;
 
 
-public class Fragment_Activity extends FragmentActivity {
+public class Fragment_Activity extends AppCompatActivity {
     Fragment mFragment1 = new FlagFragment();
     Fragment mFragment2 = new Fragment_Country();
 
     FragmentTransaction mFragmentTransaction;
-Button mButton;
+   private Button mButton1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         try {
             setContentView(R.layout.fragment_activity);
         } catch (Exception e) {
             Log.d(TAG, "onCreate", e);
-                    throw e;
+            throw e;
         }
+
+        mButton1 = findViewById(R.id.button3);
+        mButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateFragment();
+            }
+        });
+
+
+
 
         //ImageView  imageView = findViewById (R.id.flag);
         //TextView textViewState = findViewById (R.id.capital);
@@ -65,13 +78,7 @@ Button mButton;
 
       // mFragmentTransaction.add(R.id.fragment_c, mFragment2);
 
- mButton.findViewById(R.id.button3);
- mButton.setOnClickListener(new View.OnClickListener() {
-     @Override
-     public void onClick(View v) {
-         CreateFragment();
-     }
- });
+
 
 
 
@@ -85,7 +92,7 @@ Button mButton;
         Fragment fragment = fm.findFragmentById(R.id.fragment_f);
         if (fragment == null)
             fragment  = new FlagFragment();
-        fm.beginTransaction()
+            fm.beginTransaction()
                 .add(R.id.fragment_f, fragment)
                 .commit();
     }
