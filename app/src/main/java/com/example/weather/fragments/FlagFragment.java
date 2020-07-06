@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weather.R;
@@ -27,6 +28,7 @@ public class FlagFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ImageView mImageView;
 
 
     public FlagFragment() {
@@ -70,20 +72,23 @@ public class FlagFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View  v  = inflater.inflate(R.layout.fragment_flag, container, false);
+        mImageView = (ImageView) v.findViewById(R.id.flag);
 
-        try {
+       /* try {
             View v = inflater.inflate(R.layout.fragment_flag, container,false);
             return v;
         } catch (Exception e) {
             Log.e(TAG, "onCreateView", e);
             throw e;
-        }
+        }*/
 
-        public void setText(String item) {
+    /*    public void setText(String item) {
             TextView view = (TextView) getView().findViewById(R.id.detailsText);
             view.setText(item);
 
-    }
+    }*/;
+            return v;
 
-
+}
 }

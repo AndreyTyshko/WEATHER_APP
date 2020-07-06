@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.widget.ImageView;
@@ -34,8 +35,8 @@ public class Fragment_Activity extends FragmentActivity {
                     throw e;
         }
 
-        ImageView  imageView = findViewById (R.id.flag);
-        TextView textViewState = findViewById (R.id.capital);
+        //ImageView  imageView = findViewById (R.id.flag);
+        //TextView textViewState = findViewById (R.id.capital);
 
 
         Intent intent = getIntent();
@@ -48,24 +49,30 @@ public class Fragment_Activity extends FragmentActivity {
         //imageView.setImageResource(state.getFlagResource());
         //textViewState.setText(state.getName());
         //textViewCapital.setText(state.getCapital());
-
-
-
         /*Fragment  frag1 = new Fragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragment_f, frag1);
-        
+
 
         frag1 = getSupportFragmentManager().findFragmentById(R.id.fragment_f);*/
 
 
 
-       mFragmentTransaction = getSupportFragmentManager().beginTransaction();
+       //mFragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-       mFragmentTransaction.add(R.id.fragment_f, mFragment1);
+       //mFragmentTransaction.add(R.id.fragment_f, mFragment1);
 //        ((ImageView) mFragment1.getView().findViewById(R.id.flag)).setImageResource(state.getFlagResource());
 
-       mFragmentTransaction.add(R.id.fragment_c, mFragment2);
+      // mFragmentTransaction.add(R.id.fragment_c, mFragment2);
+
+
+        FragmentManager fm  = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.fragment_f);
+        if (fragment == null)
+            fragment  = new FlagFragment();
+        fm.beginTransaction()
+        .add(R.id.fragment_f, fragment)
+        .commit();
 
 
 
