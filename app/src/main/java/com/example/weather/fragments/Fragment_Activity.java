@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,16 +14,19 @@ import android.widget.Toast;
 import com.example.weather.R;
 import com.example.weather.adapter.State;
 
+import java.util.UUID;
+
 import static android.content.ContentValues.TAG;
 import static com.example.weather.MainActivity.EXTRA_STATE;
 
 
-public class Fragment_Activity extends AppCompatActivity {
+public class Fragment_Activity extends FragmentActivity {
     Fragment mFragment1 = new FlagFragment();
     Fragment mFragment2 = new Fragment_Country();
-
+    // com.example.weather.adapter.State state;
     FragmentTransaction mFragmentTransaction;
-   private Button mButton1;
+    private static final String ARG_FLAG_ID = "flag_ig";
+    private Button mButton1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class Fragment_Activity extends AppCompatActivity {
         });
 
 
-
+        //CreateFragment();
 
         //ImageView  imageView = findViewById (R.id.flag);
         //TextView textViewState = findViewById (R.id.capital);
@@ -70,23 +72,26 @@ public class Fragment_Activity extends AppCompatActivity {
         frag1 = getSupportFragmentManager().findFragmentById(R.id.fragment_f);*/
 
 
+        //mFragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-       //mFragmentTransaction = getSupportFragmentManager().beginTransaction();
-
-       //mFragmentTransaction.add(R.id.fragment_f, mFragment1);
+        //mFragmentTransaction.add(R.id.fragment_f, mFragment1);
 //        ((ImageView) mFragment1.getView().findViewById(R.id.flag)).setImageResource(state.getFlagResource());
 
-      // mFragmentTransaction.add(R.id.fragment_c, mFragment2);
+        // mFragmentTransaction.add(R.id.fragment_c, mFragment2);
 
 
-
-
+//Bundle bundle = new Bundle();
 
 
     }
 
 
-    public void CreateFragment(){
+
+
+    public FlagFragment CreateFragment(){
+
+        UUID fragID =(UUID) getIntent().getSerializableExtra(EXTRA_STATE);
+
 
         FragmentManager fm  = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_f);
@@ -95,6 +100,24 @@ public class Fragment_Activity extends AppCompatActivity {
             fm.beginTransaction()
                 .add(R.id.fragment_f, fragment)
                 .commit();
+            return FlagFragment.newInstance(fragID);
     }
+
+  /*  protected FlagFragment CreateFragment() {
+
+        UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_STATE);
+        FragmentManager fm  = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.fragment_f);
+        if (fragment == null)
+            fragment  = new FlagFragment();
+        fm.beginTransaction()
+                .add(R.id.fragment_f, fragment)
+                .commit();
+
+
+        return FlagFragment.newInstance(crimeId);
+
+    }
+*/
 
 }

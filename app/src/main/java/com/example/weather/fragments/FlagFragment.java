@@ -2,16 +2,16 @@ package com.example.weather.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.weather.R;
+import com.example.weather.adapter.State;
+import com.example.weather.adapter.StateAdapter;
 
-import static android.content.ContentValues.TAG;
+import java.util.UUID;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,13 +22,15 @@ public class FlagFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String EXTRA_STATE = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private int mParam1;
     private String mParam2;
     private ImageView mImageView;
+    private com.example.weather.adapter.State state;
+    private static final String ARG_CRIME_ID = "crime_id";
 
 
     public FlagFragment() {
@@ -40,28 +42,39 @@ public class FlagFragment extends Fragment {
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
+     * <p>
+     * //* @param param1 Parameter 1.
+     * // * @param param2 Parameter 2.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment FlagFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FlagFragment newInstance(String param1, String param2) {
+  /*  public static FlagFragment newInstance(String param1, String param2) {
         FlagFragment fragment = new FlagFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putSerializable(EXTRA_STATE, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
 
 
-    }
+    }*/
+    public static FlagFragment newInstance(UUID flagId) {
+        Bundle args = new Bundle();
+        args.putSerializable(EXTRA_STATE, flagId);
+        FlagFragment flagFragment = new FlagFragment();
+        flagFragment.setArguments(args);
+        return flagFragment;
+  }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UUID fragID = (UUID) getArguments().getSerializable(EXTRA_STATE);
+        mParam1 = state.getFlagResource();
+
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = Integer.parseInt(getArguments().getString(EXTRA_STATE));
             mParam2 = getArguments().getString(ARG_PARAM2);
 
 
@@ -72,8 +85,13 @@ public class FlagFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View  v  = inflater.inflate(R.layout.fragment_flag, container, false);
+        View v = inflater.inflate(R.layout.fragment_flag, container, false);
         mImageView = (ImageView) v.findViewById(R.id.flag);
+        mImageView.setImageResource(state.getFlagResource());
+
+
+
+
 
        /* try {
             View v = inflater.inflate(R.layout.fragment_flag, container,false);
