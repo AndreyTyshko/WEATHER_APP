@@ -59,7 +59,7 @@ public class FlagFragment extends Fragment {
 
 
     }*/
-    public static FlagFragment newInstance(UUID flagId) {
+    public static FlagFragment newInstance(State flagId) {
         Bundle args = new Bundle();
         args.putSerializable(EXTRA_STATE, flagId);
         FlagFragment flagFragment = new FlagFragment();
@@ -70,24 +70,20 @@ public class FlagFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID fragID = (UUID) getArguments().getSerializable(EXTRA_STATE);
-        mParam1 = state.getFlagResource();
 
         if (getArguments() != null) {
-            mParam1 = Integer.parseInt(getArguments().getString(EXTRA_STATE));
-            mParam2 = getArguments().getString(ARG_PARAM2);
-
-
+            State fragID = (State) getArguments().getSerializable(EXTRA_STATE);
+            mParam1 = fragID.getFlagResource();
+        //    mParam1 = Integer.parseInt(getArguments().getString(EXTRA_STATE));
+        //    mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_flag, container, false);
-        mImageView = (ImageView) v.findViewById(R.id.flag);
-        mImageView.setImageResource(state.getFlagResource());
+        mImageView = v.findViewById(R.id.flag);
+        mImageView.setImageResource(mParam1);
 
 
 

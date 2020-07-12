@@ -85,22 +85,19 @@ public class Fragment_Activity extends FragmentActivity {
 
     }
 
+    public void CreateFragment() {
 
+        State fragID = (State) getIntent().getSerializableExtra(EXTRA_STATE);
 
-
-    public FlagFragment CreateFragment(){
-
-        UUID fragID =(UUID) getIntent().getSerializableExtra(EXTRA_STATE);
-
-
-        FragmentManager fm  = getSupportFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_f);
-        if (fragment == null)
-            fragment  = new FlagFragment();
-            fm.beginTransaction()
+        if (fragment == null) {
+            fragment = FlagFragment.newInstance(fragID);
+        }
+
+        fm.beginTransaction()
                 .add(R.id.fragment_f, fragment)
                 .commit();
-            return FlagFragment.newInstance(fragID);
     }
 
   /*  protected FlagFragment CreateFragment() {
