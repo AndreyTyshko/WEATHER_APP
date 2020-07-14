@@ -14,8 +14,6 @@ import android.widget.Toast;
 import com.example.weather.R;
 import com.example.weather.adapter.State;
 
-import java.util.UUID;
-
 import static android.content.ContentValues.TAG;
 import static com.example.weather.MainActivity.EXTRA_STATE;
 
@@ -43,7 +41,8 @@ public class Fragment_Activity extends FragmentActivity {
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateFragment();
+                createFragmentFlag();
+                createFragmentCountry();
             }
         });
 
@@ -85,14 +84,17 @@ public class Fragment_Activity extends FragmentActivity {
 
     }
 
-    public void CreateFragment() {
+    public void createFragmentFlag() {
 
         State fragID = (State) getIntent().getSerializableExtra(EXTRA_STATE);
 
+
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_f);
+
         if (fragment == null) {
             fragment = FlagFragment.newInstance(fragID);
+
         }
 
         fm.beginTransaction()
@@ -100,21 +102,19 @@ public class Fragment_Activity extends FragmentActivity {
                 .commit();
     }
 
-  /*  protected FlagFragment CreateFragment() {
+    public void createFragmentCountry() {
 
-        UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_STATE);
-        FragmentManager fm  = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_f);
-        if (fragment == null)
-            fragment  = new FlagFragment();
+
+        State countryID = (State) getIntent().getSerializableExtra(EXTRA_STATE);
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragmentCountry = fm.findFragmentById(R.id.fragment_c);
+        if (fragmentCountry == null) {
+            fragmentCountry = Fragment_Country.newInstance(countryID);
+        }
         fm.beginTransaction()
-                .add(R.id.fragment_f, fragment)
+                .add(R.id.fragment_c, fragmentCountry)
                 .commit();
-
-
-        return FlagFragment.newInstance(crimeId);
-
     }
-*/
+
 
 }

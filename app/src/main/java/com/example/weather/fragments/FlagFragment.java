@@ -9,9 +9,6 @@ import android.widget.ImageView;
 
 import com.example.weather.R;
 import com.example.weather.adapter.State;
-import com.example.weather.adapter.StateAdapter;
-
-import java.util.UUID;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +23,7 @@ public class FlagFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private int mParam1;
+    private int flagResource;
     private String mParam2;
     private ImageView mImageView;
     private com.example.weather.adapter.State state;
@@ -73,7 +70,8 @@ public class FlagFragment extends Fragment {
 
         if (getArguments() != null) {
             State fragID = (State) getArguments().getSerializable(EXTRA_STATE);
-            mParam1 = fragID.getFlagResource();
+            flagResource = fragID.getFlagResource();
+
         //    mParam1 = Integer.parseInt(getArguments().getString(EXTRA_STATE));
         //    mParam2 = getArguments().getString(ARG_PARAM2);
         }
@@ -83,7 +81,7 @@ public class FlagFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_flag, container, false);
         mImageView = v.findViewById(R.id.flag);
-        mImageView.setImageResource(mParam1);
+        mImageView.setImageResource(flagResource);
 
 
 
