@@ -68,6 +68,7 @@ public class FlagFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         if (getArguments() != null) {
             State fragID = (State) getArguments().getSerializable(EXTRA_STATE);
             flagResource = fragID.getFlagResource();
@@ -75,6 +76,7 @@ public class FlagFragment extends Fragment {
         //    mParam1 = Integer.parseInt(getArguments().getString(EXTRA_STATE));
         //    mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setRetainInstance(true);
     }
 
     @Override

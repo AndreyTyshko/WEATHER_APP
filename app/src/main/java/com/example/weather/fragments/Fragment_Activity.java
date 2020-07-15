@@ -36,75 +36,37 @@ public class Fragment_Activity extends FragmentActivity {
             Log.d(TAG, "onCreate", e);
             throw e;
         }
-
+        createFragmentFlag();
+        createFragmentCountry();
         mButton1 = findViewById(R.id.button3);
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFragmentFlag();
-                createFragmentCountry();
+
             }
         });
-
-
-        //CreateFragment();
-
-        //ImageView  imageView = findViewById (R.id.flag);
-        //TextView textViewState = findViewById (R.id.capital);
-
-
         Intent intent = getIntent();
-
         State state = (State) intent.getSerializableExtra(EXTRA_STATE);
         if (state != null) {
             Toast.makeText(this, state.getName(), Toast.LENGTH_SHORT).show();
         }
 
-        //imageView.setImageResource(state.getFlagResource());
-        //textViewState.setText(state.getName());
-        //textViewCapital.setText(state.getCapital());
-        /*Fragment  frag1 = new Fragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragment_f, frag1);
-
-
-        frag1 = getSupportFragmentManager().findFragmentById(R.id.fragment_f);*/
-
-
-        //mFragmentTransaction = getSupportFragmentManager().beginTransaction();
-
-        //mFragmentTransaction.add(R.id.fragment_f, mFragment1);
-//        ((ImageView) mFragment1.getView().findViewById(R.id.flag)).setImageResource(state.getFlagResource());
-
-        // mFragmentTransaction.add(R.id.fragment_c, mFragment2);
-
-
-//Bundle bundle = new Bundle();
-
 
     }
 
     public void createFragmentFlag() {
-
         State fragID = (State) getIntent().getSerializableExtra(EXTRA_STATE);
-
-
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_f);
-
         if (fragment == null) {
             fragment = FlagFragment.newInstance(fragID);
-
         }
-
         fm.beginTransaction()
                 .add(R.id.fragment_f, fragment)
                 .commit();
     }
 
     public void createFragmentCountry() {
-
-
         State countryID = (State) getIntent().getSerializableExtra(EXTRA_STATE);
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragmentCountry = fm.findFragmentById(R.id.fragment_c);
@@ -115,6 +77,5 @@ public class Fragment_Activity extends FragmentActivity {
                 .add(R.id.fragment_c, fragmentCountry)
                 .commit();
     }
-
 
 }

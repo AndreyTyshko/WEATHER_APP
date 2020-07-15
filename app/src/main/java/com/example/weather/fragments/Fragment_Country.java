@@ -1,6 +1,7 @@
 package com.example.weather.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +60,9 @@ public class Fragment_Country extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         if (getArguments() != null) {
             State param1 = (State) getArguments().getSerializable(EXTRA_STATE);
             countryName = param1.getCapital();
@@ -66,7 +70,7 @@ public class Fragment_Country extends Fragment {
 
 
         }
-
+        setRetainInstance(true);
 
     }
 
@@ -80,5 +84,11 @@ public class Fragment_Country extends Fragment {
 
        return v;
 
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("saveCountry", countryName);
     }
 }
