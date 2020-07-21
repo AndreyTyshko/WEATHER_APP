@@ -65,6 +65,7 @@ public class Fragment_Country extends Fragment {
 
         if (getArguments() != null) {
             State param1 = (State) getArguments().getSerializable(EXTRA_STATE);
+
             countryName = param1.getCapital();
 
 
@@ -89,6 +90,9 @@ public class Fragment_Country extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("saveCountry", countryName);
+        if (countryName != null){
+            outState.putString("saveCountry", countryName);
+        }
+
     }
 }

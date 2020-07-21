@@ -25,6 +25,7 @@ public class Fragment_Activity extends FragmentActivity {
     FragmentTransaction mFragmentTransaction;
     private static final String ARG_FLAG_ID = "flag_ig";
     private Button mButton1;
+    FragmentManager fm = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class Fragment_Activity extends FragmentActivity {
         }
         createFragmentFlag();
         createFragmentCountry();
-        mButton1 = findViewById(R.id.button3);
+        mButton1 = findViewById(R.id.fragment_activity_button);
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +57,7 @@ public class Fragment_Activity extends FragmentActivity {
 
     public void createFragmentFlag() {
         State fragID = (State) getIntent().getSerializableExtra(EXTRA_STATE);
-        FragmentManager fm = getSupportFragmentManager();
+
         Fragment fragment = fm.findFragmentById(R.id.fragment_f);
         if (fragment == null) {
             fragment = FlagFragment.newInstance(fragID);
@@ -68,7 +69,7 @@ public class Fragment_Activity extends FragmentActivity {
 
     public void createFragmentCountry() {
         State countryID = (State) getIntent().getSerializableExtra(EXTRA_STATE);
-        FragmentManager fm = getSupportFragmentManager();
+
         Fragment fragmentCountry = fm.findFragmentById(R.id.fragment_c);
         if (fragmentCountry == null) {
             fragmentCountry = Fragment_Country.newInstance(countryID);
